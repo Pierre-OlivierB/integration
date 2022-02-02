@@ -12,15 +12,15 @@
         </section>
 <section class="page-section">
     <div class="container"> 
-            <form action="" class="input-group">
+            <form action="index.php?loc=commentaires" class="input-group">
                 <div>
                    <span class="input-group-text">Pseudo</span>
-                    <input type="text" class ="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" name="" id=""> 
+                    <input type="text" class ="form-control" placeholder="Username  15car max" aria-label="Username" aria-describedby="addon-wrapping" name="pseudo" id=""> 
                 </div>
                 
                 <div class="form-floating">
-                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-                    <label for="floatingTextarea2">Comments</label>
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="comments"></textarea>
+                    <label for="floatingTextarea2">Comments 500car max</label>
                 </div>
                 <button type="submit">Poster</button>
             </form>
