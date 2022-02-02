@@ -1,23 +1,27 @@
 <!-- //INSERT INTO `commentaires` (`pseudo`, `texte`, `id`) VALUES
 //('x', 'test de comentaire', '1'); -->
 <?php
-try {
 $dbhost = 'localhost';
-$dbname='hr';
+$dbname='commentaires';
 $dbuser = 'root';
 $dbpass = '';
-$connec = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
+if (isset($_POST['ok'])) {
+try {
+$connec = new PDO("mysql:host=$dbhost;dbname=$dbname", "$dbuser", "$dbpass");
 }catch (PDOException $e) {
 echo "Error : " . $e->getMessage() . "
 ";
 die();
 }
-$pseudo=$_POST['pseudo'];
-$comment=$_POST['comment'];
+
+    $pseudo=$_POST['pseudo'];
+    $comment=$_POST['comments'];
+    $message="$pseudo <br> $comment";
+
 /* Execute a prepared statement by passing an array of values */
-$sql = "INSERT INTO `commentaires` (`pseudo`, `texte`, `id`) VALUES
-        (:pseudo,:comment)"
-$res = $pdo->prepare($sql);
+$sql = "INSERT INTO commentaire (pseudo, texte) VALUES
+        (:pseudo,:comment)";
+$res = $connec->prepare($sql);
 $exec= $res->execute(array(":pseudo" => $pseudo,":comment"=>$comment));
 
 if ($exec) {
@@ -25,5 +29,9 @@ if ($exec) {
 }
 else{
     echo "Echec de l'opération d'insertion";
+} 
+$select = 'SELECT * FROM commentaire;';
+$sth = $connec->query($sql);
 }
+
 ?>

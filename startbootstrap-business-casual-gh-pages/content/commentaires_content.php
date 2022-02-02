@@ -1,10 +1,5 @@
 <?php 
-if (isset(htmlentities($_POST['ok']))) {
-   $pseudo=$_POST['pseudo'];
-   $comment=$_POST['comments'];
-   $message="$pseudo <br> $comment";
-}
-include('../bdd/control.php');
+include('./bdd/control.php');
 ?>
 <section class="page-section clearfix">
             <div class="container">
@@ -38,6 +33,11 @@ include('../bdd/control.php');
 <section class="page-section">
     <div class="container bg-faded rounded">
         <h2>Commentaires:</h2>
-        <div><?=isset($message)?$message:'' ?></div>
+        <?php while ($row=$sth->fetch(PDO::FETCH_ASSOC) : ?>
+            <tr>
+                <td><?php echo htmlspecialchars($row['pseudo']);?></td>
+                <td><?php echo htmlspecialchars($row['texte']);?></td>
+            </tr>
+        <?php endwhile?>
     </div>
 </section>
