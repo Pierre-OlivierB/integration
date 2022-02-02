@@ -26,6 +26,9 @@ $loc =filter_input(INPUT_GET,"loc");
             case 'realisation':
                 include("content/realisation_content.php");
                 break;
+                case 'commentaires':
+                    include("content/commentaires_content.php");
+                    break;
             case null:
                 include("content/index_content.php");
                 break;
