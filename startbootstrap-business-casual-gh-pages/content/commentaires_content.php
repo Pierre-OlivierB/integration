@@ -33,11 +33,15 @@ include('./bdd/control.php');
 <section class="page-section">
     <div class="container bg-faded rounded">
         <h2>Commentaires:</h2>
-        <?php while ($row=$sth->fetch(PDO::FETCH_ASSOC) : ?>
-            <tr>
+        <table>
+            <tbody>
+        <?php while ($row=$sth->fetch(PDO::FETCH_ASSOC)) : ?>
+            <tr class="primary">
                 <td><?php echo htmlspecialchars($row['pseudo']);?></td>
                 <td><?php echo htmlspecialchars($row['texte']);?></td>
             </tr>
-        <?php endwhile?>
+        <?php endwhile; ?>
+    </tbody>
+    </table>
     </div>
 </section>

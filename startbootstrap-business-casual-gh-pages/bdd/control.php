@@ -30,8 +30,17 @@ if ($exec) {
 else{
     echo "Echec de l'opération d'insertion";
 } 
+//affichage base de données
 $select = 'SELECT * FROM commentaire;';
-$sth = $connec->query($sql);
+try {
+   $sth = $connec->query($select);
+   if ($sth ===false) {
+    die("Erreur");
+    }
+} catch(PDOException $exc){
+    echo $exc->getMessage();
+}
+
 }
 
 ?>
