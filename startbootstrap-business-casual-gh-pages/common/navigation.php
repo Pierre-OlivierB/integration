@@ -8,6 +8,7 @@
                         <li class="nav-item <?=($loc=='about')?'active':'';?> px-lg-4"><a class="nav-link text-uppercase" href="index.php?loc=about">About</a></li>
                         <li class="nav-item <?=($loc=='products')?'active':'';?> px-lg-4"><a class="nav-link text-uppercase" href="index.php?loc=products">Products</a></li>
                         <li class="nav-item <?=($loc=='realisation')?'active':'';?> px-lg-4"><a class="nav-link text-uppercase" href="index.php?loc=realisation">Réalisations</a></li>
+                        <li class="nav-item <?=($loc=='commentaires')?'active':'';?> px-lg-4"><a class="nav-link text-uppercase" href="index.php?loc=commentaires">Commentaires</a></li>
                     </ul>
                 </div>
             </div>
