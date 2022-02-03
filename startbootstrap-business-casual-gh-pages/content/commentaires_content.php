@@ -1,7 +1,7 @@
 <?php 
 include('./bdd/control.php');
 ?>
-<section class="page-section clearfix">
+<section class="page-section">
             <div class="container">
                 <div class="intro">
                     <div class="intro-text left-0 text-center bg-faded p-5 rounded">
@@ -40,7 +40,7 @@ include('./bdd/control.php');
                 <td><?php echo htmlspecialchars($row['pseudo']);?></td>
                 <td><?php echo htmlspecialchars($row['texte']);?></td>
             </tr>
-        <?php endwhile; ?>
+        <?php endwhile ?>
     </tbody>
     </table>
     </div>

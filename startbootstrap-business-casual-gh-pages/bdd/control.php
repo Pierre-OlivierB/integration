@@ -8,6 +8,8 @@ $dbpass = '';
 if (isset($_POST['ok'])) {
 try {
 $connec = new PDO("mysql:host=$dbhost;dbname=$dbname", "$dbuser", "$dbpass");
+// $connec->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // set the error mode to exceptions
+// $connec->setAttribute(PDO::ATTR_EMULATE_PREPARES,false); // run real prepared queries
 }catch (PDOException $e) {
 echo "Error : " . $e->getMessage() . "
 ";
@@ -22,25 +24,38 @@ die();
 $sql = "INSERT INTO commentaire (pseudo, texte) VALUES
         (:pseudo,:comment)";
 $res = $connec->prepare($sql);
-$exec= $res->execute(array(":pseudo" => $pseudo,":comment"=>$comment));
+$res->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
+$res->bindValue(':comment',$comment, PDO::PARAM_STR);
+$res->execute();
 
-if ($exec) {
+if ($res) {
     echo 'Données ajoutées';
 }
 else{
     echo "Echec de l'opération d'insertion";
 } 
 //affichage base de données
-$select = 'SELECT * FROM commentaire;';
+
+
+}
 try {
-   $sth = $connec->query($select);
-   if ($sth ===false) {
-    die("Erreur");
+    $connec = new PDO("mysql:host=$dbhost;dbname=$dbname", "$dbuser", "$dbpass");
+    // $connec->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // set the error mode to exceptions
+    // $connec->setAttribute(PDO::ATTR_EMULATE_PREPARES,false); // run real prepared queries
+}catch (PDOException $e) {
+    echo "Error : " . $e->getMessage() . "
+    ";
+    die();
+}
+
+$select =('SELECT * FROM commentaire;');     
+    try {
+        $sth = $connec->query($select);
+        if ($sth ===false) {
+            echo("Error.");
+        }
+        
+    } catch(PDOException $e){
+        echo "Il n'y a pas encore de commentaire.";
     }
-} catch(PDOException $exc){
-    echo $exc->getMessage();
-}
-
-}
-
 ?>
